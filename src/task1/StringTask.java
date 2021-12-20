@@ -196,14 +196,19 @@ public void stringCheck(String testString)throws Exception
     }
 }
 
-private void numberCheck(int testNumber,String testString)throws Exception
+public void numberCheck(int testNumber,String testString)throws Exception
 {
-    if(testNumber<0||testString.length()<=testNumber)
+    numberCheck(testNumber,getLength(testString));
+}
+
+public void numberCheck(int testNumber,int stringLength)throws Exception
+{
+    if(testNumber<0||stringLength<=testNumber)
     {
       throw new Exception("Number cannot be negative or Given number exceeds the length of the Given string");
     }
 }
-private void indexCheck(int startingNumber,int endingNumber)throws Exception
+public void indexCheck(int startingNumber,int endingNumber)throws Exception
 {
     if(startingNumber>endingNumber)
     {
