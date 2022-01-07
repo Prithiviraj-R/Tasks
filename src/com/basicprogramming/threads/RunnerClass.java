@@ -1,5 +1,7 @@
 package com.basicprogramming.threads;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class RunnerClass
@@ -83,20 +85,15 @@ public static void main(String[] args)
 		customThread4.start();
 		customThread5.start();
 		RunnableThread customRunnable1=new RunnableThread();
-		Thread thread9=new Thread(customRunnable1);
+		Thread thread9=new Thread(customRunnable1,name1);
 		RunnableThread customRunnable2=new RunnableThread();
-		Thread thread10=new Thread(customRunnable2);
+		Thread thread10=new Thread(customRunnable2,name7);
 		RunnableThread customRunnable3=new RunnableThread();
-		Thread thread11=new Thread(customRunnable3);
+		Thread thread11=new Thread(customRunnable3,name8);
 		RunnableThread customRunnable4=new RunnableThread();
-		Thread thread12=new Thread(customRunnable4);
+		Thread thread12=new Thread(customRunnable4,name9);
 		RunnableThread customRunnable5=new RunnableThread();
-		Thread thread13=new Thread(customRunnable5);
-		thread9.setName(name1);
-		thread9.setName(name7);
-		thread9.setName(name8);
-		thread9.setName(name9);
-		thread9.setName(name10);
+		Thread thread13=new Thread(customRunnable5,name10);
 		thread9.start();
 		thread10.start();
 		thread11.start();
@@ -104,37 +101,26 @@ public static void main(String[] args)
 		thread13.start();
 		break;
 	case 5:
-		System.out.println("Enter the number of thread for RunnableThread.");
+		System.out.println("Enter the number of thread ");
 		int num=Integer.parseInt(input.nextLine());
 		for(int i=0;i<num;i++)
 		{
-		System.out.println("Enter the name:");
-		String threadName=input.nextLine();
-		System.out.println("Enter the time");
-		int time=Integer.parseInt(input.nextLine());
-		ExtendedThread cusThread1=new ExtendedThread(time);
-		cusThread1.setName(threadName);
+		ExtendedThread cusThread1=new ExtendedThread(30000);
+		cusThread1.setName("ExtendedThread"+i);
 		cusThread1.start();
 		}
-		System.out.println("Enter the number of thread for RunnableThread.");
-		int num1=Integer.parseInt(input.nextLine());
-		for(int i=0;i<num1;i++)
+		for(int i=0;i<num;i++)
 		{
-		System.out.println("Enter the name:");
-		String runnableThreadName=input.nextLine();
-		System.out.println("Enter the time");
-		int time1=Integer.parseInt(input.nextLine());
-		RunnableThread cusRunnable1=new RunnableThread(time1);
-		Thread thrd=new Thread(cusRunnable1);
-		thrd.setName(runnableThreadName);
+		RunnableThread cusRunnable1=new RunnableThread(45000);
+		Thread thrd=new Thread(cusRunnable1,"RunnableThread"+i);
 		thrd.start();
 		}
 		break;
 		
 	case 6:
 	    System.out.println("Enter the number of thread.");
-		int num2=Integer.parseInt(input.nextLine());		
-		for(int i=0;i<num2;i++)
+		int number=Integer.parseInt(input.nextLine());		
+		for(int i=0;i<number;i++)
 		{
 		
 		ExtendedThread cusThread1=new ExtendedThread(10000);
@@ -148,40 +134,73 @@ public static void main(String[] args)
 		}
 		break;
 	case 7:
-//		System.out.println("Enter the number of thread for RunnableThread.");
-//		int num=Integer.parseInt(input.nextLine());
-//		
-//		System.out.println("Enter the name:");
-//		String threadName=input.nextLine();
-//		System.out.println("Enter the time");
-//		int time=Integer.parseInt(input.nextLine());
-//		for(int i=0;i<num;i++)
+		System.out.println("Enter the number of thread.");
+		int noOfThreads=Integer.parseInt(input.nextLine());	
+		List<ExtendedThread> arrayList=new ArrayList();
+		List<RunnableThread> arrayList2=new ArrayList();
+		List<Thread> arrayList3=new ArrayList();
+		for(int j=0;j<noOfThreads;j++)
+		{
+		ExtendedThread cus1=new ExtendedThread(15000);
+		arrayList.add(cus1);
+		cus1.setName("ExtendedThread"+j);
+		cus1.start();
+		RunnableThread cus2=new RunnableThread(20000);
+		arrayList2.add(cus2);
+		Thread cus3=new Thread(cus2);
+		cus3.setName("Runnable"+j);
+		cus3.start();
+		}
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		for(int i=0;i<noOfThreads;i++)
+		{
+			ExtendedThread thrd1=arrayList.get(i);
+			thrd1.threadkill();
+			try {
+				Thread.sleep(60000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			RunnableThread thrd2=arrayList2.get(i);
+			thrd2.threadkill();
+		}
+//		System.out.println("Enter the number of thread.");
+//		int noOfThreads=Integer.parseInt(input.nextLine());	
+//		ExtendedThread[] array=new ExtendedThread[noOfThreads];
+//		RunnableThread[] array2=new RunnableThread[noOfThreads];
+//		Thread[] array3=new Thread[noOfThreads];
+//		for(int j=0;j<noOfThreads;j++)
 //		{
-//		
-//		ExtendedThread cusThread1=new ExtendedThread(time);
-//		cusThread1.setName(threadName+i);
-//		cusThread1.start();
+//		array[j]=new ExtendedThread(15000);
+//		array[j].setName("ExtendedThread"+j);
+//		array[j].start();
+//		array2[j]=new RunnableThread(20000);
+//		array3[j]=new Thread(array2[j]);
+//		array3[j].setName("Runnable"+j);
+//		array3[j].start();
 //		}
-//		System.out.println("Enter the number of thread for RunnableThread.");
-//		int num1=Integer.parseInt(input.nextLine());
-//		
-//		System.out.println("Enter the name:");
-//		String runnableThreadName=input.nextLine();
-//		System.out.println("Enter the time");
-//		int time1=Integer.parseInt(input.nextLine());
-//		for(int i=0;i<num1;i++)
+//		try {
+//			Thread.sleep(6000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		for(int i=0;i<noOfThreads;i++)
 //		{
-//		
-//		RunnableThread cusRunnable1=new RunnableThread(time1);
-//		Thread thrd=new Thread(cusRunnable1);
-//		thrd.setName(runnableThreadName+i);
-//		thrd.start();
+//			array[i].killing();
+//			try {
+//				Thread.sleep(60000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			array2[i].killing();
 //		}
-//		for(int j=0;j<num;j++)
-//		{
-//			;
-//		}
-//		break;
+		break;
     default:
     	System.out.println("Enter the correct number.");
 	}

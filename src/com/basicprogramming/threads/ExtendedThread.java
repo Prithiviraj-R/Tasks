@@ -7,10 +7,10 @@ public class ExtendedThread extends Thread
 	   
    }
    public int time;
-   int i;
-   public void set(int i)
+   Boolean i=false;
+  public void threadkill()
    {
-	   this.i=i;
+	   i=true;
    }
    public ExtendedThread(int time)
    {
@@ -19,9 +19,10 @@ public class ExtendedThread extends Thread
 
 public void run()
    {
+	 
 	   try
 	   {
-		   while(i<8)
+		   while(!i)
 			  {
 		System.out.println("Current thread name after Starting:"+currentThread().getName());
         System.out.println("Current thread priority after Starting:"+currentThread().getPriority());
@@ -29,13 +30,12 @@ public void run()
 		System.out.println("Going to sleep:"+currentThread().getName());
 		Thread.sleep(time);
 		System.out.println("After sleeping:"+currentThread().getName());
-		  
-			  System.out.println("value is true");
 		  }
 	   }
 	   catch (InterruptedException e)
 	   {
-		e.printStackTrace();
-	   }   
-   }
+		//e.printStackTrace();
+	   }  
+System.out.println("stop");
+	  }
 }

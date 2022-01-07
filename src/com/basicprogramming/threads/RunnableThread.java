@@ -2,11 +2,16 @@ package com.basicprogramming.threads;
 
 public class RunnableThread implements Runnable
 {
+  public int time;
+  boolean i=false;
   public RunnableThread()
   {
 	  
   }
-  public int time;
+  public void threadkill()
+  {
+	  i=true;
+  }
   public RunnableThread(int time)
   {
 	  this.time=time;
@@ -15,23 +20,22 @@ public class RunnableThread implements Runnable
   {
 	  try
 	  {
+		  while(!i)
+		  {
 	  System.out.println("Current Thread Name after Starting:"+Thread.currentThread().getName());
 	  System.out.println("Current Thread Priority after Starting:"+Thread.currentThread().getPriority());
 	  System.out.println("Current Thread State after Starting:"+Thread.currentThread().getState());
 	  System.out.println("Going to sleep:"+Thread.currentThread().getName());
 	  Thread.sleep(time);
 	  System.out.println("After sleeping:"+Thread.currentThread().getName());
-	  int i=0;
-	  while(i<8)
-	  {
-		  System.out.println("value is true");
-		  i=i+1;
+	  System.out.println("value is true");
 	  }
 	  } 
 	  catch (InterruptedException e)
 	  {
 		e.printStackTrace();
 	  }
+	  System.out.println("Stopped");
   }
 }
 
