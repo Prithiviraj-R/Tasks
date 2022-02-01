@@ -1,8 +1,77 @@
 package mainlayertask3;
 import task3.ArrayListTask;
 import java.util.*;
+import newexception.MistakeOccuredException;
 public class OutputLayer3
 {
+private static String[] commonCase()throws Exception
+{
+          Scanner input=new Scanner(System.in);
+          ArrayListTask task3=new ArrayListTask();
+          String[] stringArray=null;
+	  System.out.println("How many Strings you want");
+	  int inputNumber=Integer.parseInt(input.nextLine());
+	  if(inputNumber<0)
+	  {
+	   System.out.println("Number should not be negative.");
+	  }
+	  else
+	  {
+          stringArray=new String[inputNumber];
+	  for(int i=0;i<inputNumber;i++)
+	  {
+	    System.out.println("Enter the Strings:");
+	    stringArray[i]=input.nextLine();
+          }
+          }
+          return stringArray;
+}
+
+private static Object[] objectArray()throws Exception
+{
+   Scanner input=new Scanner(System.in);
+   ArrayListTask task3=new ArrayListTask();
+   Object[] objectArray=null;
+   System.out.println("How many objects you want to enter:");
+   int inputNumber=input.nextInt();
+   if(inputNumber<0)
+   {
+	   System.out.println("Number should not be negative.");
+   }
+   else
+   {
+   objectArray=new Object[inputNumber]; 
+   for(int i=0;i<inputNumber;i++)
+   {
+     ArrayListTask customObj=new ArrayListTask();
+     objectArray[i]=customObj;
+   }
+}
+return objectArray;
+}
+
+private static Integer[] intArray()throws Exception
+{
+   Scanner input=new Scanner(System.in);
+   ArrayListTask task3=new ArrayListTask();
+   Integer[] intArray=null;
+   System.out.println("How many numbers you want to enter:");
+   int inputNumber=Integer.parseInt(input.nextLine());
+   if(inputNumber<0)
+   {
+	   System.out.println("Number should not be negative.");
+   }
+   else
+  {
+   intArray=new Integer[inputNumber]; 
+   for(int i=0;i<inputNumber;i++)
+   {
+     System.out.println("Enter the numbers:");
+     intArray[i]=input.nextInt();
+   }
+   }
+  return intArray;
+}
 public static void main(String[] args)throws Exception
 {
  ArrayListTask task3=new ArrayListTask();
@@ -26,24 +95,14 @@ public static void main(String[] args)throws Exception
    {
    System.out.println("create Arraylist and add strings to it");
    List case2List1=task3.createEmptyArrayList();
-   System.out.println("How many strings you want to enter:");
-   int inputNumber2=Integer.parseInt(input.nextLine());
-   Object[] objectArray=new Object[inputNumber2]; 
-   for(int i=0;i<inputNumber2;i++)
-   {
-     System.out.println("Enter the Strings:");
-     objectArray[i]=input.nextLine();
+   String[] objectArray=commonCase();
+   List case2List2=task3.arrayListWithObject(case2List1,objectArray);
+   System.out.println("arraylist with strings:"+case2List2);
+   System.out.println("size of the list:"+task3.arrayListSize(case2List2));
    }
-	   try
-	   {
-	   List case2List2=task3.arrayListWithObject(case2List1,objectArray);
-	   System.out.println("arraylist with strings:"+case2List2);
-	   System.out.println("size of the list:"+task3.arrayListSize(case2List2));
-	   }
-	   catch(Exception exception)
-	   {
-	    System.out.println("Enter the valid input:"+exception.getMessage());
-	   }
+   catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
    }
    catch(Exception exception)
    {
@@ -56,24 +115,14 @@ public static void main(String[] args)throws Exception
    {
    System.out.println("create Arraylist and add numbers to it");
    List case3List1=task3.createEmptyArrayList();
-   System.out.println("How many numbers you want to enter:");
-   int inputNumber3=Integer.parseInt(input.nextLine());
-   Object[] objectArray3=new Object[inputNumber3]; 
-   for(int i=0;i<inputNumber3;i++)
-   {
-     System.out.println("Enter the numbers:");
-     objectArray3[i]=input.nextInt();
-   }
-   try
-   {
+   Integer[] objectArray3=intArray();
    List case3List2=task3.arrayListWithObject(case3List1,objectArray3);
    System.out.println("arraylist with strings:"+case3List2);
    System.out.println("size of the list:"+task3.arrayListSize(case3List2));
    }
-   catch(Exception exception)
+   catch(MistakeOccuredException exception)
    {
-    System.out.println("Enter the valid input:"+exception.getMessage());
-   }
+     System.out.println(exception.getMessage());
    }
    catch(Exception exception)
    {
@@ -86,24 +135,14 @@ public static void main(String[] args)throws Exception
    {
    System.out.println("create Arraylist and add strings to it");
    List case4List1=task3.createEmptyArrayList();
-   System.out.println("How many objects you want to enter:");
-   int inputNumber4=input.nextInt();
-   Object[] objectArray4=new Object[inputNumber4]; 
-   for(int i=0;i<inputNumber4;i++)
-   {
-     ArrayListTask customObj=new ArrayListTask();
-     objectArray4[i]=customObj;
-   }
-   try
-   {
+   Object[] objectArray4=objectArray();
    List case4List2=task3.arrayListWithObject(case4List1,objectArray4);
    System.out.println("arraylist with strings:"+case4List2);
    System.out.println("size of the list:"+task3.arrayListSize(case4List2));
    }
-   catch(Exception exception)
+   catch(MistakeOccuredException exception)
    {
-    System.out.println("Enter the valid input:"+exception.getMessage());
-   }
+     System.out.println(exception.getMessage());
    }
    catch(Exception exception)
    {
@@ -115,63 +154,19 @@ public static void main(String[] args)throws Exception
    System.out.println("create Arraylist and add multiple dataTypes to it");
    try
    {
-	   System.out.println("how many String do you want");
-	   int size5=Integer.parseInt(input.nextLine());
-	   if(size5<0)
-	   {
-	    System.out.println("Number should not be negative");
-	   }
-	   else
-	   {
-	   String[] strArray5=new String[size5];
-	   for(int i=0;i<size5;i++)
-	   {
-	   System.out.println("Enter The string");
-	   strArray5[i]=input.nextLine();
-	   }
-	   
-	   System.out.println("how many integer do you want");
-	   int size5_2=Integer.parseInt(input.nextLine());
-	   if(size5_2<0)
-	   {
-	     System.out.println("Number should not be negative.");
-	   }
-	   else
-	   {
-	   Integer[] intArray5=new Integer[size5_2];
-	   for(int i=0;i<size5_2;i++)
-	   {
-	    System.out.println("Enter the Integer");
-	    intArray5[i]=input.nextInt();
-	   }
-	   
-	   System.out.println("how many objects do you want");
-	   int size5_3=input.nextInt();
-	   if(size5_3<0)
-	   {
-	    System.out.println("Number should not be negative.");
-	   }
-	   Object objArray5[]=new Object[size5_3];
-	   for(int i=0;i<size5_3;i++)
-	   {
-	    ArrayListTask customObject2=new ArrayListTask();
-	    objArray5[i]=customObject2;
-	   }
-	   try
-	   {
+	   String[] strArray5=commonCase();
+	   Integer[] intArray5=intArray(); 
+	    Object[] objArray5=objectArray();
 	    List list1=task3.createEmptyArrayList();
 	    task3.arrayListWithObject(list1,strArray5);
 	    task3.arrayListWithObject(list1,intArray5);
 	    task3.arrayListWithObject(list1,objArray5);
 	    System.out.println("Arraylist"+list1);
 	    System.out.println("Size:"+task3.arrayListSize(list1));
-	   }
-	   catch(Exception exception)
-	   {
-	   System.out.println(exception.getMessage());
-	   }
-	   }
-	   }
+   }
+   catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
    }
    catch(Exception exception)
    {
@@ -184,28 +179,18 @@ public static void main(String[] args)throws Exception
   try
   {
 	  List case6List1=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want");
-	  int inputNumber6=Integer.parseInt(input.nextLine());
-	  if(inputNumber6<0)
-	  {
-	   System.out.println("Number should not be negative.");
-	  }
-	  else
-	  {
-	  String[] array6=new String[inputNumber6];
-	  for(int i=0;i<inputNumber6;i++)
-	  {
-	    System.out.println("Enter the Strings:");
-	    array6[i]=input.nextLine();
-	  }
+	  String[] array6=commonCase();
 	  List case6List2=task3.arrayListWithObject(case6List1,array6);
 	  System.out.println("ArrayList:"+case6List2);
 	  System.out.println("Size:"+task3.arrayListSize(case6List2));
 	  System.out.println("Enter the String");
 	  String inputString=input.nextLine();
 	  System.out.println("Index of Given string:"+task3.findIndexNumber(case6List2,inputString));
-	  }
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid input.");
@@ -217,20 +202,7 @@ public static void main(String[] args)throws Exception
   try
   {
 	  List case7List1=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want");
-	  int inputNumber7=Integer.parseInt(input.nextLine());
-	  if(inputNumber7<0)
-	  {
-	    System.out.println("Number should not be negative.");
-	  }
-	  else
-	  {
-	  String[] stringArray7=new String[inputNumber7];
-	  for(int i=0;i<inputNumber7;i++)
-	  {
-	   System.out.println("Enter the Strings:");
-	   stringArray7[i]=input.nextLine();
-	  }
+	  String[] stringArray7=commonCase();
 	  List case7List2=task3.arrayListWithObject(case7List1,stringArray7);
 	  System.out.println("ArrayList:"+case7List2);
 	  System.out.println("Size:"+task3.arrayListSize(case7List2));
@@ -239,8 +211,11 @@ public static void main(String[] args)throws Exception
 	  {
 	    System.out.println(case7List3.next());
 	  }
-	  }
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
    System.out.println("Enter the valid input.");
@@ -252,34 +227,19 @@ public static void main(String[] args)throws Exception
   try
   {
 	  List case8List1=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want");
-	  int inputNumber8=Integer.parseInt(input.nextLine());
-	  if(inputNumber8<0)
-	  {
-	   System.out.println("Number should not be negative");
-	  }
-	  else
-	  {
-	   String[] stringArray8=new String[inputNumber8];
-	   for(int i=0;i<inputNumber8;i++)
-	   {
-	     System.out.println("Enter the Strings:");
-	     stringArray8[i]=input.nextLine();
-	   }
-	  try
-	  {
+	  String[] stringArray8=commonCase();
 	    List case8List2=task3.arrayListWithObject(case8List1,stringArray8);
 	    System.out.println("ArrayList:"+case8List2);
 	    System.out.println("Enter the position:");
 	    int position=Integer.parseInt(input.nextLine());
-	    System.out.println("Element at given index:"+task3.findElementAtGivenIndex (case8List2,position-1));
+	    System.out.println("Element at given position:"+task3.findElementAtGivenIndex (case8List2,position-1));
+	  
 	  }
-	  catch(Exception exception)
-	  {
-	    System.out.println(exception.getMessage());
-	  } 
-	  }
-  }
+   catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
+ 
   catch(Exception exception)
   {
     System.out.println("Enter the valid input.");
@@ -289,30 +249,21 @@ public static void main(String[] args)throws Exception
  case 9:
   System.out.println("First and last index of given string");
   try
-  {
-	  List case9List1=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want");
-	  int inputNumber9=Integer.parseInt(input.nextLine());
-	  if(inputNumber9<0)
-	  {
-	   System.out.println("Number should not be negative.");
-	  }
-	  else
-	  {
-	  String[] stringArray9=new String[inputNumber9];
-	  for(int i=0;i<inputNumber9;i++)
-	  {
-	    System.out.println("Enter the Strings:");
-	    stringArray9[i]=input.nextLine();
-	  }
-	  List case9List2=task3.arrayListWithObject(case9List1,stringArray9);
+  {       
+          List list1=task3.createEmptyArrayList();
+          String[] stringArray=commonCase();
+	  List case9List2=task3.arrayListWithObject(list1,stringArray);
 	  System.out.println("ArrayList:"+case9List2);
 	  System.out.println("Enter the string:");
 	  String stringToFind=input.nextLine();
 	  System.out.println("First Occurance:"+task3.findIndexNumber(case9List2,stringToFind));
 	  System.out.println("Last Occurance:"+task3.findLastIndexNumber(case9List2,stringToFind));
-	  }
+	  
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid number");
@@ -324,22 +275,7 @@ public static void main(String[] args)throws Exception
   try
   {
 	  List case10List1=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want");
-	  int inputNumber10=Integer.parseInt(input.nextLine());
-	  if(inputNumber10<0)
-	  {
-	    System.out.println("Number should not be negative");
-	  }
-	  else
-	  {
-	  String[] stringArray10=new String[inputNumber10];
-	  for(int i=0;i<inputNumber10;i++)
-	  {
-	    System.out.println("Enter the Strings:");
-	    stringArray10[i]=input.nextLine();
-	  }
-	  try
-	  {
+	  String[] stringArray10=commonCase();
 	  List case10List2=task3.arrayListWithObject(case10List1,stringArray10);
 	  System.out.println("ArrayList:"+case10List2);
 	  System.out.println("Enter the position:");
@@ -347,13 +283,12 @@ public static void main(String[] args)throws Exception
 	  System.out.println("Enter the strings:");
 	  String insertString=input.nextLine();
 	  System.out.println("ArrayList with added element:"+task3.addNewElement(case10List2,positionToInsert-1,insertString));
+	
 	  }
-	  catch(Exception exception)
-	  {
-	    System.out.println(exception.getMessage());
-	  }
-	  }
-  }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid input.");
@@ -365,20 +300,7 @@ public static void main(String[] args)throws Exception
   try
   {
 	  List case11List1=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want");
-	  int inputNumber11=Integer.parseInt(input.nextLine());
-	  if(inputNumber11<0)
-	  {
-	   System.out.println("number should not be negative");
-	  }
-	  else
-	  {
-	   String[] stringArray11=new String[inputNumber11];
-	   for(int i=0;i<inputNumber11;i++)
-	   {
-	     System.out.println("Enter the Strings:");
-	     stringArray11[i]=input.nextLine();
-	   }
+	  String[] stringArray11=commonCase();
 	   task3.arrayListWithObject(case11List1,stringArray11);
 	   System.out.println("ArrayList:"+case11List1);
 	   System.out.println("Enter the Starting position:");
@@ -388,8 +310,11 @@ public static void main(String[] args)throws Exception
 	   List case11List2=task3.createSubList(case11List1,startPosition-1,endPosition);
 	   System.out.println("ArrayList from main list:"+case11List2);
 	   System.out.println("Size:"+task3.arrayListSize(case11List2));
-	  }
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid input");
@@ -401,45 +326,20 @@ public static void main(String[] args)throws Exception
   try
   {
 	   
-	   System.out.println("How many Strings you want for first list");
-	   int inputNumber12=Integer.parseInt(input.nextLine());
-	   if(inputNumber12<0)
-	  {
-	    System.out.println("Number should not be negative");
-	  }
-	  else
-	  {
-	   String[] stringArray12=new String[inputNumber12];
-	   for(int i=0;i<inputNumber12;i++)
-	  {
-	     System.out.println("Enter the Strings for first list:");
-	     stringArray12[i]=input.nextLine();
-	  }
-	  
-	  System.out.println("How many Strings you want for second list");
-	  int inputNumber12_1=Integer.parseInt(input.nextLine());
-	  if(inputNumber12_1<0)
-	  {
-	    System.out.println("number Should not be Negative.");
-	  }
-	  else
-	  {
-	    String[] stringArray12_1=new String[inputNumber12_1];
-	    for(int i=0;i<inputNumber12_1;i++)
-	    {
-	     System.out.println("Enter the Strings for second list:");
-	     stringArray12_1[i]=input.nextLine();
-	    }
-	    List case12List1=task3.createEmptyArrayList();
-	    task3.arrayListWithObject(case12List1,stringArray12);
-	    List case12List2=task3.createEmptyArrayList();
-	    task3.arrayListWithObject(case12List2,stringArray12_1);
-	   task3.addTwoArrayList(case12List1,case12List2);
-	   System.out.println("Added ArrayList:"+case12List1);
-	   System.out.println("Size:"+task3.arrayListSize(case12List1));
-	  }
-	  }
+	  String[] stringArray12=commonCase();
+	  String[] stringArray12_1=commonCase();
+	  List case12List1=task3.createEmptyArrayList();
+	  task3.arrayListWithObject(case12List1,stringArray12);
+	  List case12List2=task3.createEmptyArrayList();
+	  task3.arrayListWithObject(case12List2,stringArray12_1);
+	  task3.addTwoArrayList(case12List1,case12List2);
+	  System.out.println("Added ArrayList:"+case12List1);
+	  System.out.println("Size:"+task3.arrayListSize(case12List1));
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid input.");
@@ -451,35 +351,8 @@ public static void main(String[] args)throws Exception
   try
   {
 	   
-	   System.out.println("How many Strings you want for first list");
-	   int inputNumber13=Integer.parseInt(input.nextLine());
-	   if(inputNumber13<0)
-	   {
-	     System.out.println("Number should not be Negative.");
-	   }
-	  else
-	  {
-	    String[] stringArray13=new String[inputNumber13];
-	    for(int i=0;i<inputNumber13;i++)
-	    {
-	      System.out.println("Enter the Strings for first list:");
-	      stringArray13[i]=input.nextLine();
-	    }
-	    
-	    System.out.println("How many Strings you want for second list");
-	    int inputNumber13_1=Integer.parseInt(input.nextLine());
-	    if(inputNumber13_1<0)
-	    {
-	      System.out.println("Number should not be Negative");
-	    }
-	    else
-	    {
-	      String[] stringArray13_1=new String[inputNumber13_1];
-	      for(int i=0;i<inputNumber13_1;i++)
-	      {
-	       System.out.println("Enter the Strings for second list:");
-	       stringArray13_1[i]=input.nextLine();
-	      }
+	    String[] stringArray13=commonCase();
+	    String[] stringArray13_1=commonCase();
 	    List case13List1=task3.createEmptyArrayList();
 	    task3.arrayListWithObject(case13List1,stringArray13);
 	    List case13List2=task3.createEmptyArrayList();
@@ -487,9 +360,11 @@ public static void main(String[] args)throws Exception
 	    task3.addTwoArrayList(case13List2,case13List1);
 	    System.out.println("Added ArrayList:"+case13List2);
 	    System.out.println("Size:"+task3.arrayListSize(case13List2));
-	    }
-	   }
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid input.");
@@ -521,6 +396,10 @@ public static void main(String[] args)throws Exception
 	  System.out.println("Size of it:"+task3.arrayListSize(case14List2));
 	  }
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
    System.out.println("Enter the valid input.");
@@ -537,25 +416,25 @@ public static void main(String[] args)throws Exception
 	   {
 	    System.out.println("Number should not be negative.");
 	   }
+	   else
+	   {
 	   Float[] floatArray15=new Float[inputNumber15];
 	   for(int i=0;i<inputNumber15;i++)
 	    {
 	      System.out.println("Enter the Decimals:");
 	      floatArray15[i]=Float.parseFloat(input.nextLine());
 	    }
-	   try
-	   {
 	    List case15List2=task3.arrayListWithObject(case15List1,floatArray15);
 	    System.out.println("Enter the position of the decimal you want to delete:");
 	    int positionToDelete=Integer.parseInt(input.nextLine());
 	    System.out.println("ArrayList with removed Element:"+task3.removeElementsFromList(case15List2,positionToDelete-1));
 	    System.out.println("Size of it:"+task3.arrayListSize(case15List2));
 	   }
-	   catch(Exception exception)
-	   {
-	     System.out.println("Enter the valid input."+exception.getMessage());
 	   }
-  }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid number");
@@ -567,43 +446,19 @@ public static void main(String[] args)throws Exception
   try
   {
 	  List case16List1=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want for first list");
-	  int inputNumber16=Integer.parseInt(input.nextLine());
-	  if(inputNumber16<0)
-	  {
-	    System.out.println("Number should not be negative.");
-	  }
-	  else
-	  {
-	   String[] stringArray16=new String[inputNumber16];
-	   for(int i=0;i<inputNumber16;i++)
-	   {
-	     System.out.println("Enter the Strings for the First list:");
-	     stringArray16[i]=input.nextLine();
-	   }
+	  String[] stringArray16=commonCase();
 	  List case16List2=task3.arrayListWithObject(case16List1,stringArray16);
 	  List case16List3=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want for second list");
-	  int inputNumber16_1=Integer.parseInt(input.nextLine());
-	  if(inputNumber16_1<0)
-	  {
-	    System.out.println("Number should not be negative");
-	  }
-	  else
-	  {
-	   String[] stringArray16_1=new String[inputNumber16_1];
-	   for(int i=0;i<inputNumber16_1;i++)
-	   {
-	     System.out.println("Enter the Strings for secong list:");
-	    stringArray16_1[i]=input.nextLine();
-	   }
+	  String[] stringArray16_1=commonCase();
 	  List case16List4=task3.arrayListWithObject(case16List3,stringArray16_1);
 	  List case16List5=task3.removeSameElements(case16List2,case16List4);
 	  System.out.println("Desired ArrayList:"+case16List5);
 	  System.out.println("Size:"+task3.arrayListSize(case16List5));
-	  }
-	  }
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid input");
@@ -615,44 +470,19 @@ public static void main(String[] args)throws Exception
   try
   {
 	   List case17List1=task3.createEmptyArrayList();
-	   System.out.println("How many Strings you want for first List");
-	   int inputNumber17=Integer.parseInt(input.nextLine());
-	 
-	   if(inputNumber17<0)
-	   {
-	     System.out.println("Number should not be negative.");
-	   }
-	   else
-	  {
-	   String[] stringArray17=new String[inputNumber17];
-	   for(int i=0;i<inputNumber17;i++)
-	  {
-	    System.out.println("Enter the Strings for First List:");
-	    stringArray17[i]=input.nextLine();
-	  }
+	   String[] stringArray17=commonCase();
 	  List case17List2=task3.arrayListWithObject(case17List1,stringArray17);
 	  List case17List3=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want for Second List");
-	  int inputNumber17_1=Integer.parseInt(input.nextLine());
-	  if(inputNumber17_1<0)
-	  {
-	    System.out.println("Number should not be negative");
-	  }
-	  else
-	  {
-	  String[] stringArray17_1=new String[inputNumber17_1];
-	  for(int i=0;i<inputNumber17_1;i++)
-	   {
-	    System.out.println("Enter the Strings for Second List:");
-	    stringArray17_1[i]=input.nextLine();
-	   }
+	  String[] stringArray17_1=commonCase();
 	  List case17List4=task3.arrayListWithObject(case17List3,stringArray17_1);
 	  List case17List5=task3.retainSameElements(case17List2,case17List4);
 	  System.out.println("Desired ArrayList with retained elements:"+case17List5);
 	  System.out.println("Size:"+task3.arrayListSize(case17List5));
-	  }
-	  }
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
    System.out.println("Enter the valid input.");
@@ -684,6 +514,10 @@ public static void main(String[] args)throws Exception
 	   System.out.println("Size:"+task3.arrayListSize(case18List1));
 	  }
   }
+  catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
     System.out.println("Enter the valid input.");
@@ -695,35 +529,18 @@ public static void main(String[] args)throws Exception
   try
   {
 	  List case19List1=task3.createEmptyArrayList();
-	  System.out.println("How many Strings you want");
-	  int inputNumber19=Integer.parseInt(input.nextLine());
-	  if(inputNumber19<0)
-	  {
-	   System.out.println("Number should not be negative.");
-	  }
-	  else
-	  {
-	  try
-	  {
-	  String[] stringArray19=new String[inputNumber19];
-	  for(int i=0;i<inputNumber19;i++)
-	  {
-	    System.out.println("Enter the Strings:");
-	    stringArray19[i]=input.nextLine();
-	  }
+	  String[] stringArray19=commonCase();
 	  task3.arrayListWithObject(case19List1,stringArray19);
 	  System.out.println("ArrayList:"+case19List1);
 	  System.out.println("Size:"+task3.arrayListSize(case19List1));
 	  System.out.println("Enter the string you want to check:");
 	  String stringToCheck=input.nextLine();
 	  System.out.println("Is the string is present:"+task3.checkStrings(case19List1,stringToCheck));
-	  }
-	  catch(Exception exception)
-	  {
-	    System.out.println("Enter the valid input."+exception.getMessage());
-	  }
-	  }
-  }
+   }
+   catch(MistakeOccuredException exception)
+   {
+     System.out.println(exception.getMessage());
+   }
   catch(Exception exception)
   {
    System.out.println("Enter the valid Number");
