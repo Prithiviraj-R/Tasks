@@ -1,27 +1,28 @@
 package task1;
-
+import newexception.MistakeOccuredException;
+import util.HelperUtil;
 public class StringTask{
 
-public int getLength(String inputString)throws Exception
+public int getLength(String inputString)throws MistakeOccuredException
 {
 
-   stringCheck(inputString);             
+   HelperUtil.stringCheck(inputString);             
    int stringLength=inputString.length();
    return stringLength;
 }
 
 
-public char[] characterArray(String inputString)throws Exception
+public char[] characterArray(String inputString)throws MistakeOccuredException
 {
-   stringCheck(inputString);
+   HelperUtil.stringCheck(inputString);
    char chararray[]= inputString.toCharArray();
    return chararray;
 }
 
 
-public char findLetter(String inputString,int indexNumber)throws Exception 
+public char findLetter(String inputString,int indexNumber)throws MistakeOccuredException 
 {
-   stringCheck(inputString);
+   HelperUtil.stringCheck(inputString);
    numberCheck(indexNumber,inputString);
    int intial1=getLength(inputString);   
    char charOfIndex = inputString.charAt(indexNumber);
@@ -29,10 +30,10 @@ public char findLetter(String inputString,int indexNumber)throws Exception
 }
 
 
-public int countingLetters(String inputString,char letterToFind)throws Exception
+public int countingLetters(String inputString,char letterToFind)throws MistakeOccuredException
 {
    int count = 0;
-   stringCheck(inputString);
+   HelperUtil.stringCheck(inputString);
    for (int i = 0; i < inputString.length(); i++) 
    {
      if (letterToFind == inputString.charAt(i))
@@ -44,19 +45,19 @@ public int countingLetters(String inputString,char letterToFind)throws Exception
 }
 
 
-public int highestOccurances(String inputString,char inputLetter)throws Exception
+public int highestOccurances(String inputString,char inputLetter)throws MistakeOccuredException
 {
    
-   stringCheck(inputString);
+   HelperUtil.stringCheck(inputString);
    int number = inputString.lastIndexOf(inputLetter);
    return number;
 }
 
 
-public String printingSubstring(String inputString,int startingPosition,int endingPosition)throws Exception
+public String printingSubstring(String inputString,int startingPosition,int endingPosition)throws MistakeOccuredException
 {
-   stringCheck(inputString);
-   indexCheck(startingPosition,endingPosition);
+   HelperUtil.stringCheck(inputString);
+   HelperUtil.indexCheck(startingPosition,endingPosition);
    numberCheck(startingPosition,inputString);
    numberCheck(endingPosition,inputString);
    String outputString = inputString.substring(startingPosition,endingPosition);
@@ -64,19 +65,19 @@ public String printingSubstring(String inputString,int startingPosition,int endi
 }
 
 
-public String findingSubstring(String inputString,int startingPosition,int endingPosition) throws Exception
+public String findingSubstring(String inputString,int startingPosition,int endingPosition) throws MistakeOccuredException
 {
-    indexCheck(startingPosition,endingPosition);
+    HelperUtil.indexCheck(startingPosition,endingPosition);
     String outputString=printingSubstring(inputString,startingPosition,endingPosition);
     return outputString;
 }
 
 
-public String replaceString(String actualString,String replacingString,int startingPosition,int endingPosition)throws Exception
+public String replaceString(String actualString,String replacingString,int startingPosition,int endingPosition)throws MistakeOccuredException
 {
-   stringCheck(actualString);
-   stringCheck(replacingString);
-   indexCheck(startingPosition,endingPosition);
+   HelperUtil.stringCheck(actualString);
+   HelperUtil.stringCheck(replacingString);
+   HelperUtil.indexCheck(startingPosition,endingPosition);
    numberCheck(startingPosition,actualString);
    numberCheck(endingPosition,actualString);
    String tempString_1 = actualString.substring(startingPosition, endingPosition);
@@ -84,40 +85,40 @@ public String replaceString(String actualString,String replacingString,int start
    return replacedString;
 }
 
-public boolean checkingStrings(String actualString,String testString)throws Exception
+public boolean checkingStrings(String actualString,String testString)throws MistakeOccuredException
 {
-   stringCheck(actualString);
-   stringCheck(testString);
+   HelperUtil.stringCheck(actualString);
+   HelperUtil.stringCheck(testString);
    boolean checkedString = actualString.startsWith(testString);
    return checkedString;
 }
 
-public boolean checkingStringsFromLast(String actualString,String testString)throws Exception
+public boolean checkingStringsFromLast(String actualString,String testString)throws MistakeOccuredException
 {
-   stringCheck(actualString);
-   stringCheck(testString);
+   HelperUtil.stringCheck(actualString);
+   HelperUtil.stringCheck(testString);
    boolean checkedString = actualString.endsWith(testString);
    return checkedString;
 }
 
-public String upperCase(String inputString)throws Exception
+public String upperCase(String inputString)throws MistakeOccuredException
 {
-   stringCheck(inputString);
+   HelperUtil.stringCheck(inputString);
    String outputString = inputString.toUpperCase();
    return outputString;
 }
 
-public String lowerCase(String inputString)throws Exception
+public String lowerCase(String inputString)throws MistakeOccuredException
 {
-    stringCheck(inputString);
+    HelperUtil.stringCheck(inputString);
     String outputString = inputString.toLowerCase();
     return outputString;
 }
 
-public String reverse(String inputString)throws Exception
+public String reverse(String inputString)throws MistakeOccuredException
 {
   String reversedString="";
-  stringCheck(inputString);   
+  HelperUtil.stringCheck(inputString);   
   char[] charArray = characterArray(inputString);
   System.out.println(charArray);
   for (int i = inputString.length() - 1; i >= 0; i--)
@@ -127,92 +128,70 @@ public String reverse(String inputString)throws Exception
   return reversedString;
 }
 
-public String multipleString(String inputString)throws Exception
+public String multipleString(String inputString)throws MistakeOccuredException
 {
-   stringCheck(inputString);         
+   HelperUtil.stringCheck(inputString);         
    return inputString;
 }
         
-public String withoutSpace(String inputString1,String inputString2)throws Exception
+public String withoutSpace(String inputString1,String inputString2)throws MistakeOccuredException
 {
-   stringCheck(inputString1);
-   stringCheck(inputString2);
+   HelperUtil.stringCheck(inputString1);
+   HelperUtil.stringCheck(inputString2);
    String name3=inputString1.concat(inputString2);
    String replacedString = name3.replaceAll("\\s", "");
    return replacedString;
 }
 
-public String hyphenWords(String []stringArray)throws Exception
+public String hyphenWords(String []stringArray)throws MistakeOccuredException
 {
-   checkingStringArray(stringArray);
+   HelperUtil.checkingStringArray(stringArray);
    String mergedString = String.join("-",stringArray);
    return mergedString;
 }
         
-public void checkingStringArray(String[] stringArray)throws Exception
+public boolean checkingStrings_1(String testString_1,String testString_2)throws MistakeOccuredException
 {
-    for(String words:stringArray)
-    {
-      stringCheck(words);
-    } 
-}
-        
-public boolean checkingStrings_1(String testString_1,String testString_2)throws Exception
-{
-    stringCheck(testString_1);
-    stringCheck(testString_2);    
+    HelperUtil.stringCheck(testString_1);
+    HelperUtil.stringCheck(testString_2);    
     boolean checkedString=testString_1.equals(testString_2);
     return checkedString;
 }
         
-public boolean checkingStrings_2(String testString_1,String testString_2)throws Exception
+public boolean checkingStrings_2(String testString_1,String testString_2)throws MistakeOccuredException
 {
-    stringCheck(testString_1);
-    stringCheck(testString_2);
+    HelperUtil.stringCheck(testString_1);
+    HelperUtil.stringCheck(testString_2);
     boolean checkedString= testString_1.equalsIgnoreCase(testString_2);
     return checkedString;
 }
         
 
-public String stringTrimming(String inputString)throws Exception
+public String stringTrimming(String inputString)throws MistakeOccuredException
 {
-   stringCheck(inputString);
+   HelperUtil.stringCheck(inputString);
    return(inputString.trim());
 }
         
 
-public String[] stringSpliting(String inputString)throws Exception
+public String[] stringSpliting(String inputString)throws MistakeOccuredException
 {
-   stringCheck(inputString);
+   HelperUtil.stringCheck(inputString);
    String[] outputString=inputString.split("\\s");
    return outputString;
 }
 
-public void stringCheck(String testString)throws Exception
-{
-    if(testString==null || testString.isEmpty())
-    {
-      throw new Exception("String cannot be null or Empty");
-    }
-}
 
-public void numberCheck(int testNumber,String testString)throws Exception
+public void numberCheck(int testNumber,String testString)throws MistakeOccuredException
 {
     numberCheck(testNumber,getLength(testString));
 }
 
-public void numberCheck(int testNumber,int stringLength)throws Exception
+public void numberCheck(int testNumber,int stringLength)throws MistakeOccuredException
 {
     if(testNumber<0||stringLength<=testNumber)
     {
-      throw new Exception("Number cannot be negative or Given number exceeds the length of the Given string");
-    }
-}
-public void indexCheck(int startingNumber,int endingNumber)throws Exception
-{
-    if(startingNumber>endingNumber)
-    {
-       throw new Exception("Starting number should not exceed Ending Number");
+      throw new MistakeOccuredException("Number cannot be negative or Given number exceeds the length of the Given string");
     }
 }
 
