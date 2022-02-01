@@ -1,5 +1,7 @@
 package task2;
 import task1.StringTask;
+import newexception.MistakeOccuredException;
+import util.HelperUtil;
 public class StringBuilderTask{
 StringTask task1=new StringTask();
 
@@ -13,25 +15,17 @@ public StringBuilder createStringBuilder()throws Exception
 //method used to create a stringbuilder with single input.
 public StringBuilder createStringBuilderWithInput(String inputString)throws Exception
 {
-    task1.stringCheck(inputString);
+    HelperUtil.stringCheck(inputString);
     StringBuilder stringBuilder=new StringBuilder(inputString);
     return stringBuilder;
 }
 
-//method used to check the stringbuilder.
-public void stringBuilderCheck(StringBuilder testStringBuilder)throws Exception
-{
-    if(testStringBuilder==null)
-    {
-        throw new Exception("Builder Should not be null");
-    }
-}
 
 //method used to append the string.
 public StringBuilder appendedString(StringBuilder testStringBuilder,String inputString)
 throws Exception
 {   
-    stringBuilderCheck(testStringBuilder);
+    HelperUtil.objectCheck(testStringBuilder);
     testStringBuilder.append(inputString);
     return testStringBuilder;
 }
@@ -39,7 +33,7 @@ throws Exception
 //method used to calculate the length of the stringbuilder.
 public int lengthOfStringBuilder(StringBuilder testStringBuilder)throws Exception
 {
-   stringBuilderCheck(testStringBuilder);
+   HelperUtil.objectCheck(testStringBuilder);
    int length=testStringBuilder.length();
    return length;
 }
@@ -48,8 +42,9 @@ public int lengthOfStringBuilder(StringBuilder testStringBuilder)throws Exceptio
 public StringBuilder insertSymbol(StringBuilder testStringBuilder,
 String[] stringArray,String symbol)throws Exception
 {  
-   stringBuilderCheck(testStringBuilder);
-   task1.checkingStringArray(stringArray);//method used to check the stringArray.
+   HelperUtil.objectCheck(testStringBuilder);
+   HelperUtil.objectCheck(symbol);
+   HelperUtil.checkingStringArray(stringArray);//method used to check the stringArray.
    for(int i=0;i<stringArray.length;i++)
    {
       testStringBuilder.append(symbol);
@@ -62,8 +57,8 @@ String[] stringArray,String symbol)throws Exception
 public StringBuilder insertString(StringBuilder testStringBuilder,
 String inputString,String insertingString,String symbol)throws Exception
 {  
-   stringBuilderCheck(testStringBuilder);
-   task1.stringCheck(insertingString);//method used to check the string.
+   HelperUtil.objectCheck(testStringBuilder);
+   HelperUtil.stringCheck(insertingString);//method used to check the string.
    int position=task1.getLength(inputString);//method used to calculate the stringlength.
    testStringBuilder.insert(position+1,insertingString);
    testStringBuilder.insert(position+task1.getLength(insertingString)+1,symbol);
@@ -74,8 +69,8 @@ String inputString,String insertingString,String symbol)throws Exception
 public StringBuilder deleteString(String inputString,StringBuilder testStringBuilder)
 throws Exception
 {  
-   stringBuilderCheck(testStringBuilder);
-   task1.stringCheck(inputString);//method used to check the string
+   HelperUtil.objectCheck(testStringBuilder);
+   HelperUtil.stringCheck(inputString);//method used to check the string
    int position=task1.getLength(inputString);//method used to calculate stringLength.
    testStringBuilder.delete(0,position+1);
    return testStringBuilder;
@@ -85,7 +80,7 @@ throws Exception
 public StringBuilder replaceSpace(StringBuilder testStringBuilder,char insertingSymbol,char symbol)
 throws Exception
 {  
-   stringBuilderCheck(testStringBuilder);
+   HelperUtil.objectCheck(testStringBuilder);
    for(int i=0;i<testStringBuilder.length();i++)
    {
      if(testStringBuilder.charAt(i)==insertingSymbol)
@@ -99,7 +94,7 @@ throws Exception
 //method used to solve 6th problem.
 public StringBuilder reverseString(StringBuilder testStringBuilder)throws Exception
 {
-   stringBuilderCheck(testStringBuilder);
+   HelperUtil.objectCheck(testStringBuilder);
    testStringBuilder.reverse();
    return testStringBuilder;
 }
@@ -108,11 +103,11 @@ public StringBuilder reverseString(StringBuilder testStringBuilder)throws Except
 public StringBuilder deleteCharacters(StringBuilder testStringBuilder,
 int startingPosition,int endingPosition)throws Exception
 {  
-   stringBuilderCheck(testStringBuilder);
+   HelperUtil.objectCheck(testStringBuilder);
    int lengthOfTestStringBuilder=lengthOfStringBuilder(testStringBuilder);
    task1.numberCheck(startingPosition,lengthOfTestStringBuilder);//method used to check the position and length of the string.
    task1.numberCheck(endingPosition,lengthOfTestStringBuilder);
-   task1.indexCheck(startingPosition,endingPosition);
+   HelperUtil.indexCheck(startingPosition,endingPosition);
    testStringBuilder.delete(startingPosition,endingPosition);
    return testStringBuilder;
 }
@@ -121,12 +116,12 @@ int startingPosition,int endingPosition)throws Exception
 public StringBuilder replaceCharacters(StringBuilder testStringBuilder,String replacingString,
 int startingPosition,int endingPosition)throws Exception
 {
-   stringBuilderCheck(testStringBuilder);
-   task1.stringCheck(replacingString);
+   HelperUtil.objectCheck(testStringBuilder);
+   HelperUtil.stringCheck(replacingString);
    int lengthOfTestStringBuilder=lengthOfStringBuilder(testStringBuilder);
    task1.numberCheck(startingPosition,lengthOfTestStringBuilder);//method used to check the position and length of the String.
    task1.numberCheck(endingPosition,lengthOfTestStringBuilder);
-   task1.indexCheck(startingPosition,endingPosition);//method used to check two positions.
+   HelperUtil.indexCheck(startingPosition,endingPosition);//method used to check two positions.
    testStringBuilder.replace(startingPosition,endingPosition,replacingString);
    return testStringBuilder;
 }
@@ -134,8 +129,8 @@ int startingPosition,int endingPosition)throws Exception
 //method used to solve 9th problem.
 public  int indexOfString(StringBuilder testStringBuilder,String findingElement)throws Exception
 {
-   stringBuilderCheck(testStringBuilder);
-   task1.stringCheck(findingElement);
+   HelperUtil.objectCheck(testStringBuilder);
+   HelperUtil.stringCheck(findingElement);
    int indexNumber=testStringBuilder.indexOf(findingElement);
    return indexNumber;
 }
@@ -143,8 +138,8 @@ public  int indexOfString(StringBuilder testStringBuilder,String findingElement)
 //method used to solve 10th problem.
 public int lastIndexOfString(StringBuilder testStringBuilder,String findingElement)throws Exception
 {
-   stringBuilderCheck(testStringBuilder);
-   task1.stringCheck(findingElement);
+   HelperUtil.objectCheck(testStringBuilder);
+   HelperUtil.stringCheck(findingElement);
    int lastOccurancesIndexNumber=testStringBuilder.lastIndexOf(findingElement);
    return lastOccurancesIndexNumber;
 }
